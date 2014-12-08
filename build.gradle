@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.9.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'maven'
+
+
+sourceCompatibility = 1.7
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-aop")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.springframework.boot:spring-boot-starter-test")
+    compile("org.hibernate:hibernate-validator")
+    testCompile("junit:junit:4.6")
+    testCompile("org.powermock:powermock-mockito-release-full:1.5.6")
+    testCompile("org.mockito:mockito-all:1.8.4")
+    compile("com.h2database:h2:1.4.182")
+    test {
+        jvmArgs += [ "-XX:MaxPermSize=256m" ]
+    }
+}
+
+uploadArchives{
+    repositories {
+        pom {
+            project {
+                parent {
+                    groupId 'org.springframework.boot'
+                    artifactId 'spring-boot-starter-parent'
+                    version '1.1.9.RELEASE'
+                }
+            }
+        }
+    }
+}
+
+
