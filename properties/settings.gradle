@@ -1,2 +1,4 @@
 rootProject.name = prjName
 
+include 'properties'
+
